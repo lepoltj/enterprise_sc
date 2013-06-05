@@ -18,6 +18,8 @@ Tradewinds = SC.Application.create(SC.StatechartManager,
 
   autoInitStatechart: false,
 
+  trace: true,
+
   // This is your application store.  You will use this store to access all
   // of your model data.  You can also set a data source on this store to
   // connect to a backend server.  The default setup below connects the store
@@ -27,7 +29,7 @@ Tradewinds = SC.Application.create(SC.StatechartManager,
   rootState: SC.State.extend({
     initialSubstate: 'landing',
 
-    landing: SC.State.extend(),
+    landing: SC.State.plugin('Tradewinds.LandingState'),
     abroholos: SC.State.extend(),
     borasco: SC.State.extend(),
 

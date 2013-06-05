@@ -9,17 +9,27 @@
 */
 Tradewinds.LandingPane = SC.MainPane.extend(
 /** @scope Tradewinds.LandingPane.prototype */ {
-    childViews: ['abroholosButton', 'borascoButton'],
+    childViews: ['abroholosButton', 'abroholosLabel', 'borascoButton', 'borascoLabel'],
 
-    abroholosButton: SC.ImageView.extend({
-      layout: { centerX: 0, centerY: 0, height: 150, width: 150 },
-      scale: SC.BEST_FIT,
-      value: sc_static('resources/images/abroholos.jpg')
+    abroholosButton: SC.ImageButtonView.extend({
+      layout: { centerX: -155, centerY: 0, height: 150, width: 150 },
+      //scale: SC.FILL_PROPORTIONALLY,
+      image: 'abroholos-button'
     }),
 
-    borascoButton: SC.ImageView.extend({
-      layout: { centerX: 0, centerY: 0, height: 150, width: 150 },
-      scale: SC.BEST_FIT,
-      value: sc_static('resources/images/borasco.jpg')
+    abroholosLabel: SC.LabelView.extend({
+      layout: { centerX: -155, centerY: 100, height: 24, width: 150 },
+      value: 'Abroholos'
+    }),
+
+    borascoButton: SC.ImageButtonView.extend({
+      layout: { centerX: 155, centerY: 0, height: 150, width: 150 },
+      //scale: SC.FILL_PROPORTIONALLY,
+      image: 'borasco-button'
+    }),
+
+    borascoLabel: SC.LabelView.extend({
+      layout: { centerX: 155, centerY: 100, height: 24, width: 150 },
+      value: 'Borasco'
     })
 });

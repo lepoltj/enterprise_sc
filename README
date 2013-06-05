@@ -1,6 +1,34 @@
 ==========================================================================
-Project:   EnterpriseSc
-Copyright: @2013 My Company, Inc.
+Project:   EnterpriseSC
 ==========================================================================
 
-TODO: Describe Your Project
+The purpose of EnterpriseSC is to establish guidelines for developing large-scale applications using SproutCore. EnterpriseSC will also layout examples of how to implement them. At times these will differ from the implementations commonly given in SproutCore tutorials, as the needs for large-scale applications push those common techniques to their limits.
+
+The principals behind these techniques are as follows:
+- Minimize the number of observers at all times
+- Minimize the amount of data needed at all times
+- Respect the seperation of concerns enshrined in MVC
+
+These principals lead to the following techniques:
+- The Statechart should be the center of the application, responsible for creating/destroying/showing/hiding all views. To make this explicit, mix SC.StatechartManager into your application object:
+MyApp = SC.Application.create(SC.StatechartManager, {
+  autoInitStatechart: false
+});
+
+It is important that the statechart NOT be automatically initialized when it is mixed into your application; it should be initialized seperatly in main:
+MyApp.main = function main() {
+  MyApp.initStatechart();
+};
+
+- The Statechart takes the place of ALL coordinating controllers.
+- Application-wide mediating controllers should be minimized.
+- The Statechart will create and own context-specific mediating controllers.
+- Do not use SC.Page; views created as part of SC.Page are never destroyed.
+- Do not specify bindings when defining views. That is, the following should not be used:
+MyApp.MyView = SC.View.extend({
+   ...
+   labelView = SC.LabelView.extend({
+      valueBinding: 'MyApp.someController.labelValue'
+   });
+   ...
+});
