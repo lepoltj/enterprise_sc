@@ -7,7 +7,7 @@ The purpose of EnterpriseSC is to establish guidelines for developing large-scal
 The principals behind these techniques are as follows:
 - Minimize the number of observers at all times
 - Minimize the amount of data needed at all times
-- Respect the seperation of concerns enshrined in MVC
+- Respect the separation of concerns enshrined in MVC
 
 These principals lead to the following techniques:
 - The Statechart should be the center of the application, responsible for creating/destroying/showing/hiding all views. To make this explicit, mix SC.StatechartManager into your application object:
@@ -15,7 +15,7 @@ MyApp = SC.Application.create(SC.StatechartManager, {
   autoInitStatechart: false
 });
 
-It is important that the statechart NOT be automatically initialized when it is mixed into your application; it should be initialized seperatly in main:
+It is important that the statechart NOT be automatically initialized when it is mixed into your application; it should be initialized separately in main:
 MyApp.main = function main() {
   MyApp.initStatechart();
 };
