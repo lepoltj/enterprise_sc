@@ -13,8 +13,8 @@ Tradewinds.LandingPane = SC.MainPane.extend(
 
     abroholosButton: SC.ImageButtonView.extend({
       layout: { centerX: -155, centerY: 0, height: 150, width: 150 },
-      //scale: SC.FILL_PROPORTIONALLY,
-      image: 'abroholos-button'
+      image: 'abroholos-button',
+      action: 'abroholosPressed'
     }),
 
     abroholosLabel: SC.LabelView.extend({
@@ -24,7 +24,7 @@ Tradewinds.LandingPane = SC.MainPane.extend(
 
     borascoButton: SC.ImageButtonView.extend({
       layout: { centerX: 155, centerY: 0, height: 150, width: 150 },
-      //scale: SC.FILL_PROPORTIONALLY,
+      scale: SC.FILL_PROPORTIONALLY,
       image: 'borasco-button'
     }),
 

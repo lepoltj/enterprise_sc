@@ -30,7 +30,7 @@ Tradewinds = SC.Application.create(SC.StatechartManager,
     initialSubstate: 'landing',
 
     landing: SC.State.plugin('Tradewinds.LandingState'),
-    abroholos: SC.State.extend(),
+    abroholos: SC.State.plugin('Tradewinds.AbroholosState'),
     borasco: SC.State.extend(),
 
     abroholsPressed: function() {
