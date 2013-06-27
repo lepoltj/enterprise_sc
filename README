@@ -21,8 +21,11 @@ MyApp.main = function main() {
 };
 
 - The Statechart takes the place of ALL coordinating controllers.
-- Application-wide mediating controllers should be minimized.
+- Application-wide mediating controllers should be minimized or eliminated.
 - The Statechart will create and own context-specific mediating controllers.
+- The Statechart will make context-specific mediating controllers available to substates where
+ necessary. A sample of how to do this is in states/abroholos_state.js, where
+ Tradewinds.AbroholosInternalState is plugged in.
 - Do not use SC.Page; views created as part of SC.Page are never destroyed.
 - Do not specify bindings when defining views. That is, the following should not be used:
 MyApp.MyView = SC.View.extend({
@@ -32,3 +35,5 @@ MyApp.MyView = SC.View.extend({
    });
    ...
 });
+
+Instead, after the statechart creates a view it should bind up the properties.

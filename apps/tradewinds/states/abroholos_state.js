@@ -1,7 +1,11 @@
+sc_require('states/abroholos_internal_state');
+
 Tradewinds.AbroholosState = SC.State.extend({
 
   _abroholosView: null,
   _abroholosController: null,
+
+  initialSubstate: 'ready',
 
   enterState: function() {
     // load data?
@@ -11,9 +15,11 @@ Tradewinds.AbroholosState = SC.State.extend({
     }));
 
     // create mediating controllers
-    this._abroholosController = SC.ObjectController.create({
-      content: Tradewinds.store.materializeRecord(key)
-    });
+    this.set('_abroholosController',
+      SC.ObjectController.create({
+        content: Tradewinds.store.materializeRecord(key)
+      })
+    );
 
     // TODO: create view controllers
 
@@ -29,7 +35,8 @@ Tradewinds.AbroholosState = SC.State.extend({
   },
 
   exitState: function() {
-    var data;
+    var data,
+      controller = this.get('_abroholosController');
     // remove view
     this._abroholosView.remove();
 
@@ -39,12 +46,12 @@ Tradewinds.AbroholosState = SC.State.extend({
 
     // TODO: destroy view controllers
 
-    data = this._abroholosController.get('content');
+    data = controller.get('content');
 
     // destroy mediating controllers
     this._abroholosController.set('content', null);
-    this._abroholosController.destroy();
-    this._abroholosController = null;
+    controller.destroy();
+    this.set('_abroholosController', null);
 
     // unload data
     Tradewinds.store.unloadRecord(Tradewinds.Abroholos, data.get('id'));
@@ -52,6 +59,18 @@ Tradewinds.AbroholosState = SC.State.extend({
 
   backPressed: function() {
     this.gotoState('landing');
-  }
+  },
+
+  toInternal: function() {
+    this.gotoState('internal');
+  },
+
+  ready: SC.State.extend({}),
+
+  // This state demonstrates how to have data that is owned by one state used by a child state while
+  // avoiding tight coupling.
+  internal: SC.State.plugin('Tradewinds.AbroholosInternalState', {
+    superControllerBinding: SC.Binding.oneWay('.parentState._abroholosController')
+  })
 
 });

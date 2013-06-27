@@ -1,0 +1,9 @@
+@import '_theme.css';
+
+$theme.image-button .abroholos-button {
+  @include slice('images/abroholos.png');
+}
+
+$theme.image-button .borasco-button {
+  @include slice('images/borasco.png');
+}
